@@ -8,7 +8,7 @@ Ce README contient l'historique de toutes les commandes ayant permis d'installer
 
 >RASPBERRY PI OS LITE (64 bit)
 
-On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique et ne contient pas d'élément par défaut inutile comme minecraft ... On a choisi celle en 64 bit pour des raisons de performance. C'est aussi la dernière version de Debian donc la Bulleye (Debian 11)       
+On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique et ne contient pas d'élément par défaut inutile comme minecraft ... On a choisi celle en 64 bit pour des raisons de performance. C'est aussi la dernière version de Debian donc la Bullseye (Debian 11)       
 
 Ensuite, après avoir "write" l'OS sur la carte SD de la rasp, on va dans **Disks** pour changer la taille mémoire de la partition "roofts" et prendre tout l'espace disponible.     
 
@@ -77,7 +77,7 @@ Ce qui donne si tout va bien :
 
 Tester une page PHP en récupérant les infos PHP :   
 > rm /var/www/html/index.html   
-> echo "<?php phpinfo(); ?>" > /var/www/html/index.php  
+> echo "\<?php phpinfo(); ?>" > /var/www/html/index.php  
 
 Puis ouvrir dans le navigateur : http://[ip_wifi]/
 
