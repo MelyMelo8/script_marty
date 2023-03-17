@@ -13,11 +13,11 @@ On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique
 Ensuite, après avoir "write" l'OS sur la carte SD de la rasp, on va dans **Disks** pour changer la taille mémoire de la partition "roofts" et prendre tout l'espace disponible.     
 
 Enfin, on met la carte sur la rasp, on branche la rasp à un clavier et un écran pour faire la configuration de base :        
-> language = English    
+> keyboard = French    
 > username = marty  
 > password = marty1983  
 
-Puis, comme par défaut, le clavier est en Qwerty, on ouvre la configuration et on change le clavier en French et le fuseau horaire à Paris.
+Puis, on ouvre la configuration, on active la connexion ssh de la rasp (menu Interface / ssh) et on change le fuseau horaire de London à Paris. (menu Localisation / Timezone)
 > sudo raspi-config
 
 Ensuite, on peut éteindre la rasp, et la brancher sur le canapé pour s'y connecter en ssh. Attention, l'ip est fourni par le wifi donc le routeur. 

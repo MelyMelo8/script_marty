@@ -21,7 +21,7 @@ then
     echo "$BLUE Apache est déjà installé $END"
 else 
 
-    sudo apt install apache2
+    sudo apt install apache2 -y
 
     echo "$BLUE ### Configuration des droits ### $END"
 
@@ -33,7 +33,7 @@ else
     wget -O verif_apache.html http://127.0.0.1
     cat ./verif_apache.html | grep 'It works' > test
 
-    if [ -s test ]
+    if [ ! -s test ]
     then 
         echo "$RED Apache ne s'est pas correctement installé $END"
         exit 0
@@ -60,12 +60,12 @@ else
     sudo apt update
 
     echo "$BLUE Installation du module FastCGI $END"
-    sudo apt install libapache2-mod-fcgid
+    sudo apt install libapache2-mod-fcgid -y
 
     echo "$BLUE Installation des modules PHP $END"
     sudo apt install php$PHP_VERSION-cli php$PHP_VERSION-fpm \
     php$PHP_VERSION-opcache php$PHP_VERSION-curl php$PHP_VERSION-mbstring \
-    php$PHP_VERSION-pgsql php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-gd
+    php$PHP_VERSION-pgsql php$PHP_VERSION-zip php$PHP_VERSION-xml php$PHP_VERSION-gd -y
 
     echo "$BLUE Activation configuration php-fpm $END"
     sudo a2enmod proxy_fcgi
@@ -91,36 +91,41 @@ then
     echo "$BLUE MariaDB est déjà installé $END"
 else 
     echo "$BLUE Installation du serveur mariadb $END"
-    sudo apt install mariadb-server php8.2-mysql
+    sudo apt install mariadb-server php8.2-mysql -y
 
     echo "$BLUE Configuration du mot de passe root $END"
-    mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'marty198';"
-    mysql --user=root --password=marty198 --execute="GRANT ALL PRIVILEGES ON . TO 'root'@'localhost' WITH GRANT OPTION;"
+    sudo mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'marty198';"
+    sudo mysql --user=root --password=marty198 --execute="GRANT ALL PRIVILEGES ON . TO 'root'@'localhost' WITH GRANT OPTION;"
 
     PHPMYADMIN_VERSION=5.2.1
     echo "$BLUE Installation de phpmyadmin version $PHPMYADMIN_VERSION (compatible PHP $PHP_VERSION) $END"
     cd /tmp
     wget https://files.phpmyadmin.net/phpMyAdmin/$PHPMYADMIN_VERSION/phpMyAdmin-$PHPMYADMIN_VERSION-all-languages.zip && echo "Téléchargement des sources"
     echo "$BLUE Installation unzip $END"
-    sudo apt install unzip
+    sudo apt install unzip -y
     echo "$BLUE Désarchive PhpMyAdmin $END"
     unzip phpMyAdmin-$PHPMYADMIN_VERSION-all-languages.zip
     echo "$BLUE Déplace le contenu dans /usr/share/phpmyadmin $END"
     sudo mv phpMyAdmin-$PHPMYADMIN_VERSION-all-languages /usr/share/phpmyadmin
+
     echo "$BLUE Configuration $END"
     sudo mkdir -p /var/lib/phpmyadmin/tmp
     sudo chown -R www-data:www-data /var/lib/phpmyadmin/
     cp /usr/share/phpmyadmin/config.sample.inc.php /usr/share/phpmyadmin/config.inc.php
+
     openssl rand -base64 32 > blowfish
+    # transforme le caractère / en 1 pour éviter les problèmes sur la commande sed qui suit
+    sudo sed -i "s/\//1/g" blowfish
     sudo sed -i "s/cfg.'blowfish_secret'. = ''/cfg['blowfish_secret'] = '$(cat blowfish)'/g" /usr/share/phpmyadmin/config.inc.php
-    sudo echo "$cfg['TempDir'] = '/var/lib/phpmyadmin/tmp'" >> /usr/share/phpmyadmin/config.inc.php
+    sudo echo "\$cfg['TempDir'] = '/var/lib/phpmyadmin/tmp';" >> /usr/share/phpmyadmin/config.inc.php
 
     echo "$BLUE Intégration de phpmyadmin à Apache $END"    
 
-    sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+    # supposes que vous avez au préalable mis la conf en même temps que le script sur /home/marty
+    sudo mv phpmyadmin.conf /etc/apache2/conf-available/
 
     sudo a2enconf phpmyadmin.conf
-    sudo echo "ServerName localhost" >> /etc/apache2/apache2.conf
+    echo "ServerName localhost" | sudo tee -a /etc/apache2/apache2.conf
     sudo apachectl configtest
     sudo systemctl reload apache2 && echo "Redémarrage d'apache"
 
@@ -168,7 +173,7 @@ then
     echo "$BLUE Mosquitto est déjà installé $END"
 else 
     echo "$BLUE Installation Mosquitto $END"
-    sudo apt-get install mosquitto mosquitto-clients
+    sudo apt-get install mosquitto mosquitto-clients -y
 
     echo "$BLUE Configuration $END"
     # à changer le jour où on sécurise MQTT
