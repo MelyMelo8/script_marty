@@ -149,4 +149,20 @@ Activer l'extention msqli pour pouvoir communiquer avec PHP
 Vérifier l'installation de PhpMyAdmin : http://[ip_wifi]/phpmyadmin
 
 
+## Installation d'un gestionnaire de paquet JS et CSS 
+
+Les plus connus sont npm (Node Package Manager) et yarn. On utilisera yarn car il est plus rapide que npm.
+
+Installer NodeJS
+> sudo apt install nodejs -y    
+
+Installation de yarn 
+> curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -        
+> echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list        
+> sudo apt update   
+> sudo apt install yarn -y  
+
+Yarn version
+> yarn --version    
+> \# 1.22.19
 
