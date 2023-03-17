@@ -95,7 +95,7 @@ else
 
     echo "$BLUE Configuration du mot de passe root $END"
     sudo mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'marty198';"
-    sudo mysql --user=root --password=marty198 --execute="GRANT ALL PRIVILEGES ON . TO 'root'@'localhost' WITH GRANT OPTION;"
+    sudo mysql --user=root --password=marty198 --execute="GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;"
 
     PHPMYADMIN_VERSION=5.2.1
     echo "$BLUE Installation de phpmyadmin version $PHPMYADMIN_VERSION (compatible PHP $PHP_VERSION) $END"
@@ -122,7 +122,7 @@ else
     echo "$BLUE Intégration de phpmyadmin à Apache $END"    
 
     # supposes que vous avez au préalable mis la conf en même temps que le script sur /home/marty
-    sudo mv phpmyadmin.conf /etc/apache2/conf-available/
+    sudo mv /home/marty/phpmyadmin.conf /etc/apache2/conf-available/
 
     sudo a2enconf phpmyadmin.conf
     echo "ServerName localhost" | sudo tee -a /etc/apache2/apache2.conf
