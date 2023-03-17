@@ -96,7 +96,7 @@ Installer MySQL
 > sudo apt install mariadb-server php8.2-mysql  
 
 Vérifier que MySQL fonctionne et changer le mot de passe root
-> sudo mysql --user=root
+> sudo mysql --user=root    
 > ALTER USER 'root'@'localhost' IDENTIFIED BY 'marty198';   
 > GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;      
 
@@ -166,3 +166,22 @@ Yarn version
 > yarn --version    
 > \# 1.22.19
 
+## Serveur MQTT avec Mosquitto
+
+Installation de mosquitto
+> sudo apt-get install mosquitto mosquitto-clients      
+
+Service à faire tourner au démarrage de la rasp
+> sudo systemctl enable mosquitto.service
+
+Vérification du status 
+> sudo service mosquitto status
+
+**Configuration pour simplifier les développements.** Il serai bien de l'améliorer avec des utilisateurs prédéfinis (identifiants et passwords) pour sécuriser la communication. 
+> sudo nano /etc/mosquitto/conf.d/default.conf
+
+Et écrire la configuration permettant de se connecter anonymement à MQTT : 
+> allow_anonymous true
+
+On redémarre le service 
+> sudo service mosquitto restart
