@@ -24,6 +24,28 @@ Ensuite, on peut éteindre la rasp, et la brancher sur le canapé pour s'y conne
 
 > ssh marty@[ip_wifi]
 
+À présent, vous pouvez suivre la version courte ou la version détaillée permettant d'installer tous les paquets pour le serveur WEB de la rasp. Les deux versions donnent le même résultat.
+
+# Version courte (un script pour tout faire)
+
+Il faut au préalable connaître l'adresse IP de la raspberry fourni par le routeur ou le wifi si vous l'installer de chez vous. Chez moi, l'adresse était : 192.168.1.175. Ensuite, une fois la rasberry booté. Vous pouvez envoyer le script [installation.sh](installation.sh) et le fichier de configuration [phpmyadmin.conf](phpmyadmin.conf) sur la raspberry depuis un terminal sur votre ordinateur :     
+> scp installation_rasp/rasp_web/phpmyadmin.conf marty@192.168.1.175:/home/marty    
+> scp installation_rasp/rasp_web/installation.sh marty@192.168.1.175:/home/marty    
+
+Ensuite, connecter vous en ssh sur la raspberry :   
+> ssh marty@192.168.1.175   
+
+Et lancer le script :   
+> chmod +x installation.sh      
+> ./installation.sh
+
+**REMARQUE**:   
+- Le mot de passe de la raspberry est 'marty1983' comme configuré juste après l'installation de l'OS    
+- L'exécution de l'installation dure environ 30 min     
+- Une partie de l'installation donne un résultat très moche sur le terminal (copie des sources de PHP8), c'est normal ^.^"
+
+# Version détaillée (commande par commande)
+
 ## Installation Serveur WEB
 
 ### Installation d'Apache
