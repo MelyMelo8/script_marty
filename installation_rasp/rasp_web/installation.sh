@@ -177,7 +177,7 @@ else
 
     echo "$BLUE Configuration $END"
     # à changer le jour où on sécurise MQTT
-    sudo echo "allow_anonymous true" > /etc/mosquitto/conf.d/default.conf
+    sudo echo "allow_anonymous true" | sudo tee /etc/mosquitto/conf.d/default.conf
 
     echo "$BLUE Service Mosquitto démarré et set dans les services à démarrer au boot $END"
     sudo systemctl enable mosquitto.service
