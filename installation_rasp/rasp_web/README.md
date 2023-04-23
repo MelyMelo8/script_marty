@@ -6,21 +6,20 @@ Ce README contient l'historique de toutes les commandes ayant permis d'installer
 
 ## Choix de l'OS sur "Raspberry Pi Imager v1.7.3"
 
->RASPBERRY PI OS LITE (64 bit)
+>RASPBERRY PI OS LITE (32 bit)
 
-On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique et ne contient pas d'élément par défaut inutile comme minecraft ... On a choisi celle en 64 bit pour des raisons de performance. C'est aussi la dernière version de Debian donc la Bullseye (Debian 11)       
+On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique et ne contient pas d'élément par défaut inutile comme minecraft ... On a choisi celle en 32 bit car bien que la 64 bit soit plus performante, les raspberry du canapé sont en 32 bit... C'est aussi la dernière version de Debian donc la Bullseye (Debian 11)       
 
-Ensuite, après avoir "write" l'OS sur la carte SD de la rasp, on va dans **Disks** pour changer la taille mémoire de la partition "roofts" et prendre tout l'espace disponible.     
-
-Enfin, on met la carte sur la rasp, on branche la rasp à un clavier et un écran pour faire la configuration de base :        
-> keyboard = French    
-> username = marty  
-> password = marty1983  
-
-Puis, on ouvre la configuration, on active la connexion ssh de la rasp (menu Interface / ssh) et on change le fuseau horaire de London à Paris. (menu Localisation / Timezone)
+Ensuite, on configure les paramètres important de la raspberry pi dans les paramètres de imager (*si on oubli, on peut la configurer après mais en branchant la rasp à un clavier et un écran et la commande suivante pour ouvrir la configuration :* 
 > sudo raspi-config
 
-Ensuite, on peut éteindre la rasp, et la brancher sur le canapé pour s'y connecter en ssh. Attention, l'ip est fourni par le wifi donc le routeur. 
+*menus Interface / ssh et Localisation / Timezone*). Les paramètres importants à configurer sont : ouverture du port **ssh**, **identifiant / mdp**, **timezone** Paris, **keyboard** français pour avoir le clavier Azerty. voici les identifiant/mdp de la raspberry WEB :           
+> username = marty  
+> password = marty1983     
+
+Enfin, après avoir "write" l'OS sur la carte SD de la rasp, on va dans **Disks** pour changer la taille mémoire de la partition "roofts" et prendre tout l'espace disponible.  
+
+Ensuite, on peut brancher la rasp sur le canapé pour s'y connecter en ssh. Attention, l'ip est fourni par le wifi donc le routeur. 
 
 > ssh marty@[ip_wifi]
 
