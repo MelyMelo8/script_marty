@@ -201,8 +201,9 @@ Vérification du status
 **Configuration pour simplifier les développements.** Il serai bien de l'améliorer avec des utilisateurs prédéfinis (identifiants et passwords) pour sécuriser la communication. 
 > sudo nano /etc/mosquitto/conf.d/default.conf
 
-Et écrire la configuration permettant de se connecter anonymement à MQTT : 
-> allow_anonymous true
+Et écrire la configuration permettant de se connecter anonymement à MQTT et sur l'ip wifi de la rasp web serveur : 
+> allow_anonymous true      
+> listener 1883
 
 On redémarre le service 
 > sudo service mosquitto restart

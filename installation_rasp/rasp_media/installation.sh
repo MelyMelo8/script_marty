@@ -59,6 +59,7 @@ if [ ! -d "/home/media/marty" ];then
 
     echo -e "$BLUE Récupération paquets MQTT et VLC $END"
     npm install --save mqtt vlcplayer-node
+    npm install mqtt -g 
 
     echo -e "$BLUE Création server.js $END"
     echo "function hello() {" > server.js
@@ -72,5 +73,8 @@ if [ ! -d "/home/media/marty" ];then
     echo -e "$BLUE Test avec npm start $END"
     npm start
 fi
+
+# création du dossier pour stocker les medias : 
+sudo mkdir /var/medias && sudo chmod 777 /var/medias
 
 

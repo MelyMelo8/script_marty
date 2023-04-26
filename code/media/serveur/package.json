@@ -1,0 +1,18 @@
+{
+    "name": "marty-media",
+    "version": "1.0.0",
+    "description": "Serveur permettant sur commande MQTT de gérer la diffusion de vidéo sur le videoprojecteur du canapé.",
+    "scripts": {
+        "start": "cross-env NODE_ENV=production node server"
+    },
+    "author": "ing3 inem",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "media-player-controller": "^1.5.3",
+        "mqtt": "^4.3.7"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}
