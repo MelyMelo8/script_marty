@@ -6,9 +6,9 @@ Ce README contient l'historique de toutes les commandes ayant permis d'installer
 
 ## Choix de l'OS sur "Raspberry Pi Imager v1.7.3"
 
->RASPBERRY PI OS LITE (32 bit)
+>RASPBERRY PI OS (32 bit)
 
-On choisi l'OS **Lite**, car elle est moins volumineuse que la version graphique et ne contient pas d'élément par défaut inutile comme minecraft ... On a choisi celle en 32 bit car bien que la 64 bit soit plus performante, les raspberry du canapé sont en 32 bit... C'est aussi la dernière version de Debian donc la Bullseye (Debian 11)       
+On choisi l'OS classique avec Desktop, car c'était le seul moyen pour que VLC fonctionne correctement. On a choisi celle en 32 bit car bien que la 64 bit soit plus performante, les raspberry du canapé sont en 32 bit... C'est aussi la dernière version de Debian donc la Bullseye (Debian 11)       
 
 Ensuite, on configure les paramètres important de la raspberry pi dans les paramètres de imager (*si on oubli, on peut la configurer après mais en branchant la rasp à un clavier et un écran et la commande suivante pour ouvrir la configuration :* 
 > sudo raspi-config
@@ -78,21 +78,21 @@ Initialisation du serveur
 > npm init -y
 
 Récupération des librairies JS nécessaires (pour VLC et MQTT)
-> npm install --save mqtt vlcplayer-node
+> npm install --save mqtt media-player-controller
 
 Script Hello Word pour vérifier que le serveur fonctionne ^.^
-> echo "function hello() {" > server.js
-> echo -e "    console.log(\x60Hello nodejs! \\\n Using \x24{process.version} node version.\x60);" >> server.js
-> echo -e "} \\n" >> server.js
-> echo "hello();" >> server.js 
-> cat server.js
+> echo "function hello() {" > server.js       
+> echo -e "    console.log(\x60Hello nodejs! \\\n Using \x24{process.version} node version.\x60);" >> server.js     
+> echo -e "} \\n" >> server.js      
+> echo "hello();" >> server.js      
+> cat server.js     
 
 Vous devriez obtenir le résultat suivant : 
-> function hello() {
->    console.log(`Hello nodejs! \n Using ${process.version} node version.`);
-> } 
->
-> hello();
+> function hello() {        
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(`Hello nodejs!\nUsing ${process.version} node version.`);        
+> }         
+>       
+> hello();      
 
 Ensuite, on démarre le serveur pour vérifier le résultat et initialiser la commande start de yarn : 
 > node server.js
